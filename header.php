@@ -56,7 +56,6 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
         </div>
       </div>
       <div class="list-group list-group-flush">
-          // 移动端导航栏
           <a class="list-group-item list-group-item-action menu-item" href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a>
         <?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
         <?php while ($category->next()): ?>
@@ -102,7 +101,6 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
 
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
-                // 导航栏
                 <li class="nav-item"><a class="nav-link" href="<?php $this->options->siteUrl(); ?>"><?php _e('首页'); ?></a></li>
               <?php $this->widget('Widget_Metas_Category_List')->to($category); ?>
               <?php while ($category->next()): ?>

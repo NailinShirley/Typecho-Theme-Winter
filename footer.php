@@ -33,7 +33,7 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
         <h3 class="mb-3 main-footer-info-title main-footer-info-navigation-title">导航</h3>
         <div class="w-100 h-100 main-footer-info-navigation-list">
           <div class="side-navbar-nav list-group list-group-flush">
-            暂无导航
+            ——
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
   <div class="container d-flex justify-content-md-between justify-content-center">
     <div class="text-center main-footer-copyright">
       <p>Powered by <a href="https://typecho.org/" rel="noopener nofollow" target="_blank">TYPECHO</a>. Copyright &copy;
-        2022. Crafted with <a href="https://github.com/NailinShirley/Winter/" target="_blank" rel="noopener nofollow">Winter</a>.
+        2022. Crafted with <a href="https://github.com/NailinShirley/Typecho-Theme-Winter" target="_blank" rel="noopener nofollow">Winter</a>.
       </p>
     </div>
     <div class="d-none d-md-block main-footer-meta">冬季</div>

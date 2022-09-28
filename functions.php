@@ -345,8 +345,8 @@ function themeConfig($form)
   <?php
   echo '<div class="tip"><span class="current-ver"><strong><code>Ver ' . Winter_VERSION . '</code></strong></span>
     <div class="tip-header"><h1>Theme-Winter</h1></div>
-    <p>感谢选择使用 <code>Winter</code> </p>
-    <p><a href="https://github.com/NailinShirley/Winter/issues">issue</a></p>
+    <p>感谢您选择使用 <code>Winter</code> 主题</p>
+    <p><a href="https://github.com/NailinShirley/Typecho-Theme-Winter/issues">issue</a></p>
 </div>';
   $bgUrl = new Typecho_Widget_Helper_Form_Element_Text('bgUrl', NULL, 'https://backiee.com/static/wpdb/wallpapers/3840x2160/179508.jpg', _t('首页背景图片'), _t('在这里填入一个图片 URL 地址'));
   $Gravatar = new Typecho_Widget_Helper_Form_Element_Text('Gravatar', NULL, NULL, _t('自定义 Gravatar 源'), _t('输入Gravatar源，如https://gravatar.loli.net/avatar/'));
