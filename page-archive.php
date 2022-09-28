@@ -5,7 +5,7 @@
  * @package custom
  * @author 奈琳雪利
  * @link https://github.com/NailinShirley
- * @version 1.0.0
+ * @version 1.0.1
  */
 $this->need('header.php');
 ?>
