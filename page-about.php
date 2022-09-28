@@ -10,25 +10,25 @@
 $this->need('header.php');
 ?>
 <section class="main-hero template-about-me">
-  <div class="main-hero-bg"
-       style="background-image: url('<?= $this->fields->thumbnail ?>')"></div>
-  <div class="d-flex flex-column align-content-center justify-content-center main-hero-content">
-    <div class="text-center main-hero-content-title"><?= $this->title; ?></div>
-    <div class="main-hero-waves-area waves-area">
-      <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-           viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave"
-                d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"/>
-        </defs>
-        <g class="parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0"/>
-          <use xlink:href="#gentle-wave" x="48" y="3"/>
-          <use xlink:href="#gentle-wave" x="48" y="5"/>
-          <use xlink:href="#gentle-wave" x="48" y="7"/>
-        </g>
-      </svg>
-    </div>
+    <div class="main-hero-bg"
+         style="background-image: url('<?= $this->fields->thumbnail ?>')"></div>
+    <div class="d-flex flex-column align-content-center justify-content-center main-hero-content">
+        <div class="text-center main-hero-content-title"><?= $this->title; ?></div>
+        <div class="main-hero-waves-area waves-area">
+            <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                          d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"/>
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0"/>
+                    <use xlink:href="#gentle-wave" x="48" y="3"/>
+                    <use xlink:href="#gentle-wave" x="48" y="5"/>
+                    <use xlink:href="#gentle-wave" x="48" y="7"/>
+                </g>
+            </svg>
+        </div>
 </section>
 <main class="main-content custom-about-template">
     <div class="d-flex justify-content-center align-items-center flex-column about-me-home">
@@ -57,25 +57,13 @@ $this->need('header.php');
             </div>
         </div>
     </div>
-  <div class="container-sm">
-    <div class="row">
-      <article class="col-12 col-sm-12 px-0 post-content article-main borderbox">
-        <?php echo Utils::getContent($this->content) ?>
-      </article>
+    <div class="container-sm">
+        <div class="row">
+            <article class="col-12 col-sm-12 px-0 post-content article-main borderbox">
+                <?php echo Utils::getContent($this->content) ?>
+            </article>
+        </div>
     </div>
-  </div>
 </main>
-<section class="main-footer-waves-area waves-area">
-  <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-    <defs>
-      <path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z" />
-    </defs>
-    <g class="parallax">
-      <use xlink:href="#gentle-wave" x="48" y="0" />
-      <use xlink:href="#gentle-wave" x="48" y="3" />
-      <use xlink:href="#gentle-wave" x="48" y="5" />
-      <use xlink:href="#gentle-wave" x="48" y="7" />
-    </g>
-  </svg>
-</section>
+
 <?php $this->need('footer.php'); ?>
