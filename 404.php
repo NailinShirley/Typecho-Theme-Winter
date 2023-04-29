@@ -54,7 +54,7 @@
         2022. Crafted with <a href="https://github.com/NailinShirley/Winter/" target="_blank" rel="noopener nofollow">Winter</a>.
       </p>
     </div>
-    <div class="d-none d-md-block main-footer-meta">冬季</div>
+    <div class="d-none d-md-block main-footer-meta">奈琳雪利窥视着你</div>
   </div>
   <div
     class="container d-flex flex-wrap-reverse justify-content-md-between justify-content-center text-center main-footer-audit">

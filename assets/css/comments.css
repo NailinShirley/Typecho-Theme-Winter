@@ -409,7 +409,7 @@
 
 .v .vlist .vcard .vhead .vnick {
     position: relative;
-    font-size: .875rem;
+    font-size: 1.4rem;
     font-weight: 500;
     margin-right: .875rem;
     cursor: pointer;
@@ -445,7 +445,7 @@
     padding: .2rem .5rem;
     background: #ededed;
     color: #b3b1b1;
-    font-size: .75rem;
+    font-size: .8rem;
     border-radius: .2rem;
     margin-right: .3rem
 }
@@ -464,7 +464,7 @@
 
 .v .vlist .vcard .vh .vtime {
     color: #b3b3b3;
-    font-size: .75rem;
+    font-size: 1rem;
     margin-right: .875rem
 }
 
@@ -485,7 +485,7 @@
     word-break: break-all;
     text-align: justify;
     color: #4a4a4a;
-    font-size: .875rem;
+    font-size: 1.2rem;
     line-height: 2;
     position: relative;
     margin-bottom: .75rem;

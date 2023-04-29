@@ -14,8 +14,8 @@ function threadedComments($comments, $options)
   $commentLevelClass = $comments->levels > 0 ? ' comment-child' : ' comment-parent';
   ?>
   <?php
-  $host = 'https://gravatar.loli.net';
-  $url = '/avatar/';
+  $host = 'https://gravatar.loli.net/avatar/';
+  $url = '';
   $rating = Helper::options()->commentsAvatarRating;
   $hash = md5(strtolower($comments->mail));
   $email = strtolower($comments->mail);
@@ -72,7 +72,7 @@ function threadedComments($comments, $options)
             </a>
           </div>
           <div class="col col-80 text-right">
-            <button type="submit" title="Cmd|Ctrl+Enter" class="vsubmit vbtn" id="misubmit">回复</button>
+            <button type="submit" title="Cmd|Ctrl+Enter" class="vsubmit vbtn" id="misubmit" onclick="javascript:location.reload();">回复</button>
             <?php $security = $this->widget('Widget_Security'); ?>
           </div>
         </div>

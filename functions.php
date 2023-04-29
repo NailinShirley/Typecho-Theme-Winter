@@ -2,7 +2,7 @@
 error_reporting(0);
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 define('Winter_VERSION', '1.0.0');
-define('__TYPECHO_GRAVATAR_PREFIX__', Helper::options()->Gravatar ? Helper::options()->Gravatar : '//cdn.v2ex.com/gravatar/');
+define('__TYPECHO_GRAVATAR_PREFIX__', Helper::options()->Gravatar ? Helper::options()->Gravatar : 'https://gravatar.loli.net/avatar/');
 require_once 'lib/Utils.php';
 require_once 'lib/Comments.php';
 if (!empty(Helper::options()->cdn)) {
@@ -50,7 +50,7 @@ function themeConfig($form)
       box-shadow: 0em 0em 0em 0em transparent inset;
       -webkit-transition: color 0.1s ease, border-color 0.5s ease;
       transition: color 0.1s ease, border-color 0.5s ease;
-      font-size: 1em;
+      font-size: 1.2em;
       line-height: 1.2857;
       resize: vertical
     }
@@ -225,7 +225,7 @@ function themeConfig($form)
       vertical-align: baseline;
       font-style: normal;
       min-height: 17px;
-      font-size: 1rem;
+      font-size: 1.2rem;
       line-height: 17px;
       min-width: 17px
     }
@@ -359,9 +359,9 @@ function themeConfig($form)
   $Subtitle = new Typecho_Widget_Helper_Form_Element_Text('Subtitle', NULL, NULL, _t('站点副标题'), _t(''));
   $alipay = new Typecho_Widget_Helper_Form_Element_Text('alipay', NULL, NULL, _t('支付宝收款二维码链接'), _t(''));
   $wpay = new Typecho_Widget_Helper_Form_Element_Text('wpay', NULL, NULL, _t('微信收款二维码链接'), _t(''));
+  $ecny = new Typecho_Widget_Helper_Form_Element_Text('ecny', NULL, NULL, _t('数字人民币收款二维码链接'), _t(''));
   $qiniu = new Typecho_Widget_Helper_Form_Element_Text('qiniu', NULL, NULL, _t('七牛云替换全站镜像'), _t('需要带http/https'));
   $github = new Typecho_Widget_Helper_Form_Element_Text('github', NULL, '#', _t('GITHUB'), _t(''));
-  $QQGROUP = new Typecho_Widget_Helper_Form_Element_Text('QQGROUP', NULL, '#', _t('QQ群链接'), _t(''));
   $ititle = new Typecho_Widget_Helper_Form_Element_Text('ititle', NULL, '首页标题', _t('首页标题'), _t(''));
   $Logo = new Typecho_Widget_Helper_Form_Element_Text('Logo', NULL, '网站logo', _t('网站logo'), _t(''));
   $form->addInput($bgUrl);
@@ -378,8 +378,8 @@ function themeConfig($form)
   $form->addInput($serverURLs);
   $form->addInput($alipay);
   $form->addInput($wpay);
+  $form->addInput($ecny);
   $form->addInput($github);
-  $form->addInput($QQGROUP);
   $JConfig = new Typecho_Widget_Helper_Form_Element_Checkbox('JConfig',
     array(
       'enableComments' => '开启主题自带评论系统'
@@ -436,6 +436,8 @@ function themeInit($archive)
     // 为添加评论的操作时
     ajaxComment($archive);
   }
+
+
 }
 
 /**
@@ -971,4 +973,25 @@ function commentAtContent($coid)
   } else {
     return '';
   }
+}
+
+//总字数统计
+function allOfCharacters() {
+    $chars = 0;
+    $db = Typecho_Db::get();
+    $select = $db ->select('text')->from('table.contents');
+    $rows = $db->fetchAll($select);
+    foreach ($rows as $row) { $chars += mb_strlen(trim($row['text']), 'UTF-8'); }
+    $unit = '';
+    if($chars >= 10000)     { $chars /= 10000; $unit = 'w'; } 
+    else if($chars >= 1000) { $chars /= 1000;  $unit = 'k'; }
+    $out = sprintf('%.2lf %s',$chars, $unit);
+    return $out;
+}
+
+//字数统计
+function word_count($cid){
+	$db = Typecho_Db::get ();
+	$rs = $db->fetchRow($db->select('table.contents.text')->from('table.contents')->where('table.contents.cid=?',$cid)->order ('table.contents.cid',Typecho_Db::SORT_ASC)->limit (1));
+	return mb_strlen($rs['text'], 'UTF-8');
 }

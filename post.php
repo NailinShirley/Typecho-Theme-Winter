@@ -7,7 +7,8 @@
     <div class="text-center main-hero-content-title"><?= $this->title; ?></div>
     <div class="text-center main-hero-content-description"><?php $this->author(); ?>
       / <?= date('Y-m-d', $this->created) ?>
-      / <?= getCategory($this)['category'] ?> / 阅读量 <?php get_post_view($this) ?></div>
+      / <?= getCategory($this)['category'] ?> <br> 阅读量 <?php get_post_view($this) ?> / 本文字数 <?php echo word_count($this->cid); ?>
+</div>
   </div>
   <div class="main-hero-waves-area waves-area">
     <svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -28,6 +29,20 @@
 
 <main class="main-content">
   <div class="container-sm">
+      <!--- 过时提醒 --->
+    <?php
+        $days_publish = round ((time() - $this->date->timeStamp) / 86400);
+        $days_modified = round ((time() - $this->modified) / 86400);
+        if($days_publish >= 30):
+    ?>
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+</svg>
+            <strong>提醒：</strong>本文创作于 <?=$days_publish?> 天前，最后编辑于 <?=$days_modified?> 天前，部分内容可能不具备时效性，请您注意。
+        </div>
+    <?php endif; ?>
     <nav class="d-none d-md-block post-content-main-breadcrumb" aria-label="breadcrumb">
       <ol class="px-3 py-0 px-md-0 breadcrumb">
         <li class="breadcrumb-item"><a href="<?= $this->options->siteUrl() ?>"><?php $this->options->title(); ?></a>
@@ -54,8 +69,23 @@
         data-toggle="popover"
         data-placement="bottom"
         data-trigger="focus"
-        data-content="<ul class='d-flex justify-content-center align-items-center site-popover-wrapper-share'><li><a class='share-weibo' href='https://service.weibo.com/share/share.php?title=<?= $this->title; ?>&url=<?= $this->permalink; ?>&pic=<?= $this->fields->thumbnail ?>' title='分享到微博' target='_blank' rel='nofollow noopener'><i class='fab fa-weibo'></i></a></li><li><a class='share-qq' href='https://connect.qq.com/widget/shareqq/index.html?url=<?= $this->permalink; ?>&title=<?= $this->title; ?>&summary=<?= htmlspecialchars(excerpt($this->content)); ?>&pics=<?= $this->fields->thumbnail ?>&site=<?= $this->options->title ?>' title='分享到QQ' target='_blank' rel='nofollow noopener'><i class='fab fa-qq'></i></a></li><li><a class='share-wechat' title='分享到微信'><i class='fab fa-weixin'></i></a><div class='post-share-wechat-qr' id='wechat-qr-code-img'></div></li><li><a class='share-twitter' href='https://twitter.com/share?text=<?= $this->title; ?>&url=<?= $this->permalink; ?>' title='分享到推特' target='_blank' rel='nofollow noopener'><i class='fab fa-twitter'></i></a></li></ul>"
-      >
+        title="分享"
+        data-content="
+        <ul class='d-flex justify-content-center align-items-center site-popover-wrapper-share'>
+            <li><a class='share-weibo'
+                   href='https://service.weibo.com/share/share.php?title=<?= $this->title; ?>&url=<?= $this->permalink; ?>&pic=<?= $this->fields->thumbnail ?>'
+                   title='分享到微博' target='_blank' rel='nofollow noopener'><i class='fab fa-weibo'></i></a></li>
+            <li>
+                <a class='share-qq'
+                   href='https://connect.qq.com/widget/shareqq/index.html?url=<?= $this->permalink; ?>&title=<?= $this->title; ?>&summary=<?= htmlspecialchars(excerpt($this->content)); ?>&pics=<?= $this->fields->thumbnail ?>&site=<?= $this->options->title ?>'
+                   title='分享到QQ' target='_blank' rel='nofollow noopener'><i class='fab fa-qq'></i></a></li>
+            <li><a class='share-wechat' title='分享到微信'><i class='fab fa-weixin'></i></a>
+                <div class='post-share-wechat-qr' id='wechat-qr-code-img'></div>
+            </li>
+            <li><a class='share-twitter' href='https://twitter.com/share?text=<?= $this->title; ?>&url=<?= $this->permalink; ?>'
+                   title='分享到推特' target='_blank' rel='nofollow noopener'><i class='fab fa-twitter'></i></a></li>
+        </ul>"
+        >
         <i class="fas fa-share-alt"></i>
       </button>
       <button
@@ -65,7 +95,7 @@
         data-target="#collapseDonation"
         aria-expanded="false"
         aria-controls="collapseDonation"
-        title="捐赠"
+        title="赞赏"
       >
         <i class="fas fa-coffee"></i>
       </button>
@@ -75,16 +105,24 @@
             <?php if ($this->options->alipay != null): ?>
               <div class="col-sm">
                 <figure class="figure">
-                  <img src="<?= $this->options->alipay; ?>" alt="支付宝捐赠" title="请使用支付宝扫一扫进行捐赠">
-                  <figcaption class="figure-caption">请使用支付宝扫一扫进行捐赠</figcaption>
+                  <img src="<?= $this->options->alipay; ?>" alt="支付宝赞赏" title="请使用支付宝扫一扫进行赞赏">
+                  <figcaption class="figure-caption">请使用支付宝扫一扫进行赞赏</figcaption>
                 </figure>
               </div>
             <?php endif ?>
             <?php if ($this->options->wpay != null): ?>
               <div class="col-sm">
                 <figure class="figure">
-                  <img src="<?= $this->options->wpay; ?>" alt="微信捐赠" title="请使用微信扫一扫进行赞赏">
+                  <img src="<?= $this->options->wpay; ?>" alt="微信赞赏" title="请使用微信扫一扫进行赞赏">
                   <figcaption class="figure-caption">请使用微信扫一扫进行赞赏</figcaption>
+                </figure>
+              </div>
+            <?php endif ?>
+            <?php if ($this->options->ecny != null): ?>
+              <div class="col-sm">
+                <figure class="figure">
+                  <img src="<?= $this->options->ecny; ?>" alt="数字人民币赞赏" title="请使用数字人民币扫一扫进行赞赏">
+                  <figcaption class="figure-caption">请使用数字人民币扫一扫进行赞赏</figcaption>
                 </figure>
               </div>
             <?php endif ?>
@@ -102,7 +140,7 @@
         <a href="<?= $this->permalink; ?>" title="<?= $this->title; ?>"><?= $this->permalink; ?></a>
       </li>
       <li class="post-copyright-license">
-        <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+        <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"
                                                     rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a>
         许可协议。转载请注明出处！
       </li>
@@ -115,10 +153,6 @@
             <a href="<?= $this->author->permalink; ?>"><?php $this->author(); ?></a>
           </h4>
           <div class="author-card-social">
-            <a class="site-tooltip author-card-social-links" target="_blank" rel="noreferrer noopener nofollow"
-               href="<?= $this->options->QQGROUP ?>" data-toggle="tooltip" data-placement="top" title="QQ">
-              <i class="fab fa-qq"></i>
-            </a>
             <a class="site-popover author-card-social-links"
                href="#"
                data-container=".site-wrapper"
@@ -154,7 +188,7 @@
         <div class="row read-next-feed">
           <div class="col-lg px-0 px-sm-3 d-flex min-h-300 post-read-more-item">
             <article class="read-next-card"
-                     style="background-image: url(https://demo.ghost.io/content/images/size/w600/2017/07/blog-cover.jpg)">
+                     style="background-image: url(https://cdn.nailinshirley.com/wallpaper/main-bg.jpg)">
               <header class="read-next-card-header">
                 <small class="read-next-card-header-sitetitle">&mdash; <?php $this->author(); ?> &mdash;</small>
                 <h3 class="read-next-card-header-title">
@@ -177,7 +211,7 @@
                 </ul>
               </div>
               <footer class="read-next-card-footer">
-                <a href="<?= getCategory($this)['url']; ?>">查看更多文章 →</a>
+                <a href="https://blog.nailinshirley.com/archives">查看归档 →</a>
               </footer>
             </article>
           </div>
@@ -188,7 +222,7 @@
                   <img class="post-read-next-image" src="<?php if (!empty(thePrev($this)['thumbnail'])) {
                     echo thePrev($this)['thumbnail'];
                   } else {
-                    echo 'https://casper.ghost.org/v2.0.0/images/welcome-to-ghost.jpg';
+                    echo 'https://cdn.nailinshirley.com/wallpaper/main-bg.jpg';
                   } ?>"
                        alt="#">
                 </a>
@@ -224,7 +258,7 @@
                   <img class="post-read-next-image" src="<?php if (!empty(theNext($this)['thumbnail'])) {
                     echo theNext($this)['thumbnail'];
                   } else {
-                    echo 'https://casper.ghost.org/v2.0.0/images/welcome-to-ghost.jpg';
+                    echo 'https://cdn.nailinshirley.com/wallpaper/main-bg.jpg';
                   } ?>"
                        alt="#">
                 </a>

@@ -30,11 +30,16 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
         </div>
       </div>
       <div class="d-none d-lg-block col main-footer-info-navigation">
-        <h3 class="mb-3 main-footer-info-title main-footer-info-navigation-title">导航</h3>
+        <h3 class="mb-3 main-footer-info-title main-footer-info-navigation-title">信息</h3>
         <div class="w-100 h-100 main-footer-info-navigation-list">
-          <div class="side-navbar-nav list-group list-group-flush">
-            ——
-          </div>
+            <center>
+            文章数目：<?= Utils::getAuthorPosts($this->author->uid) ?> 篇
+            <br>
+            全站字数：<?php echo allOfCharacters(); ?> 字
+            <br>
+            <div class="side-navbar-nav list-group list-group-flush"><a class="side-navbar-nav list-group list-group-flush" href="https://blog.nailinshirley.com/archives">查看归档</a></div>
+            <div class="side-navbar-nav list-group list-group-flush"><a class="side-navbar-nav list-group list-group-flush" href="https://blog.nailinshirley.com/feed">RSS订阅</a></div>
+            </center>
         </div>
       </div>
     </div>
@@ -44,15 +49,15 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
   <div class="container d-flex justify-content-md-between justify-content-center">
     <div class="text-center main-footer-copyright">
       <p>Powered by <a href="https://typecho.org/" rel="noopener nofollow" target="_blank">TYPECHO</a>. Copyright &copy;
-        2022. Crafted with <a href="https://github.com/NailinShirley/Typecho-Theme-Winter" target="_blank" rel="noopener nofollow">Winter</a>.
+        2023. Crafted with <a href="https://github.com/NailinShirley/Typecho-Theme-Winter" target="_blank" rel="noopener nofollow">Winter</a>.
       </p>
     </div>
-    <div class="d-none d-md-block main-footer-meta">冬季</div>
+    <div class="d-none d-md-block main-footer-meta">奈琳雪利窥视着你</div>
   </div>
   <div
     class="container d-flex flex-wrap-reverse justify-content-md-between justify-content-center text-center main-footer-audit">
     <p>
-      <?php if (!null == $this->options->beian): ?><a href="http://www.beian.miit.gov.cn/" target="_blank"
+      <?php if (!null == $this->options->beian): ?><a href="http://beian.miit.gov.cn/" target="_blank"
                                                       rel="nofollow noopener"><?php echo $this->options->beian ?></a><?php endif ?>
     </p>
   </div>
@@ -110,7 +115,7 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
   }
 </script>
 <script type="text/javascript">
-  window.Spring = {
+  window.Winter = {
     name: "<?= $this->options->ititle ?>"
   }
 </script>

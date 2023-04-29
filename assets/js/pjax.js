@@ -105,7 +105,7 @@ var loadFiles = {
                 visitor: true, // 文章访问量统计
                 highlight: true, // 代码高亮
                 recordIP: true, // 是否记录评论者IP
-                placeholder: '人生在世，错别字在所难免，无需纠正。'
+                placeholder: '占位符'
               });
             }
           }

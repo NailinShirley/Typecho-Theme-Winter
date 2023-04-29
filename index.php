@@ -1,10 +1,10 @@
-<?php
+ <?php
 /**
  * 响应式TYPECHO主题
  *
  * @package Winter
  * @author 奈琳雪利
- * @version 1.0.0
+ * @version 1.0.2
  * @link https://github.com/NailinShirley
  */
 
@@ -44,16 +44,9 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
       <div class="text-center main-hero-content-title"><?php $this->author(); ?></div>
       <div class="text-center main-hero-content-description"><?= Utils::getAuthor($this->author->url)['bio'] ?></div>
       <div class="text-center main-hero-content-description">
-        <i class="fas fa-map-marker-alt"></i> <?= Utils::getAuthor($this->author->url)['location'] ?>
-        <span class="date-divider"></span>
         <i class="fas fa-poll-h"></i> <?= Utils::getAuthorPosts($this->author->uid) ?> 篇文章
       </div>
       <div class="text-center main-hero-content-social">
-        <a class="site-tooltip main-hero-content-social-links" target="_blank" rel="noreferrer noopener nofollow"
-           href="<?= $this->options->QQGROUP ?>" data-toggle="tooltip" data-placement="bottom" title=""
-           data-original-title="加入QQ群">
-          <i class="fab fa-qq"></i>
-        </a>
         <a
           class="site-popover main-hero-content-social-links"
           href="#"
@@ -93,11 +86,11 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
       <?php if ($this->getDescription() != null): ?>
         <div
           class="text-center main-hero-content-description"><?= Utils::getCategoryCount($this->getDescription())[0] ?></div><?php endif ?>
-      <div class="text-center main-hero-content-description">该分类下有<?= Utils::getCnums($this->category) ?>篇文章
+      <div class="text-center main-hero-content-description">该分类下有 <?= Utils::getCnums($this->category) ?> 篇文章
       </div>
     <?php elseif ($this->is('index')): ?>
       <div class="text-center main-hero-content-title"><?= $this->options->ititle ?></div>
-      <div class="text-center main-hero-content-description home-sentence">冬季的雪</div>
+      <div class="text-center main-hero-content-description home-sentence">永恒地运转中 希望也是如此</div>
     <?php endif ?>
   </div>
   <div class="main-hero-waves-area waves-area">
@@ -121,17 +114,11 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
   <div class="container-sm pb-3 pb-lg-0">
     <?php while ($this->next()): ?>
       <article class="row mb-3 my-lg-5 post-card home-post-item">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-6 px-0<?php if ($this->sequence % 2 === 0) {
-          echo ' order-md-last';
-        } ?>">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-6 px-0">
           <div class="post-card-image">
             <div class="post-card-image-shadow"></div>
             <a data-ajax href="<?= $this->permalink; ?>"
-               class="post-card-image-link<?php if ($this->sequence % 2 === 0) {
-                 echo ' even';
-               } else {
-                 echo ' odd';
-               } ?>">
+               class="post-card-image-link">
               <div class="post-card-image-link-background"
                    style="background-image: url('<?php
                    if ($this->fields->thumbnail) {
@@ -143,31 +130,17 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
             </a>
           </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6<?php if ($this->sequence % 2 === 0) {
-          echo ' order-md-first';
-        } ?>">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6" style="padding-right: 30px;padding-left: 30px">
           <div class="d-flex flex-column justify-content-center post-card-content">
-            <div class="text-center <?php if ($this->sequence % 2 === 0) {
-              echo 'text-lg-right ';
-            } else {
-              echo 'text-lg-left ';
-            } ?> mt-3 mt-lg-0 post-card-content-tag">
+            <div class="text-center mt-3 mt-lg-0 post-card-content-tag">
               <i class="fas fa-bookmark"></i>
               <?php $this->category('/', false); ?>
             </div>
-            <h3 class="<?php if ($this->sequence % 2 === 0) {
-              echo 'text-right ';
-            } else {
-              echo 'text-left ';
-            } ?>post-card-content-title">
+            <h3 class="post-card-content-title">
               <a data-ajax href="<?= $this->permalink; ?>"
                  class="post-card-content-title-link"><?php $this->title(); ?></a>
             </h3>
-            <p class="mb-3 mb-md-5 <?php if ($this->sequence % 2 === 0) {
-              echo 'text-right ';
-            } else {
-              echo 'text-left ';
-            } ?>post-card-content-excerpt">
+            <p class="mb-3 mb-md-5 post-card-content-excerpt">
               <?php
               if ($this->fields->previewContent)
                 $this->fields->previewContent();
@@ -175,11 +148,7 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
                 $this->excerpt(500, '...');
               ?>
             </p>
-            <div class="d-flex <?php if ($this->sequence % 2 === 0) {
-              echo 'justify-content-start justify-content-md-end ';
-            } else {
-              echo 'justify-content-start ';
-            } ?>align-items-center post-card-content-meta">
+            <div class="d-flex align-items-center post-card-content-meta">
               <div class="d-flex align-items-center mr-1 post-card-content-meta-authors">
                 <a href="<?= $this->author->permalink; ?>" class="post-card-content-meta-authors-link site-tooltip"
                    data-toggle="tooltip"
@@ -194,7 +163,7 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
                 </div>
                 <div class="post-card-content-meta-other-readtime">
                   <i class="icon far fa-bookmark"></i>
-                  <?= getRate($this->text); ?>分钟阅读
+                  <?= getRate($this->text); ?> 分钟阅读
                 </div>
               </div>
             </div>
@@ -212,18 +181,17 @@ if ($this->_currentPage == ceil($this->getTotal() / $this->parameter->pageSize))
               <?php $this->pageLink('<span aria-hidden="true"><i class="fas fa-angle-left"></i></span>') ?>
             </li>
             <li class="page-item"><a class="page-link">第 <?= $cpage ?>
-                页，共<?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?>页</a></li>
+                页，共 <?php echo ceil($this->getTotal() / $this->parameter->pageSize); ?> 页</a></li>
             <li class="page-item" <?php echo $hiddens ?>>
               <?php $this->pageLink('<span aria-hidden="true"><i class="fas fa-angle-right"></i></span>','next')?>
             </li>
           </ul>
         </nav>
       </div>
-
     </div>
   <?php else: ?>
     <div class="container-sm">
-      <p style="text-align: center"><strong>暂无文章</strong></p>
+      <p style="text-align: center">暂 无 内 容</p>
     </div>
   <?php endif ?>
 </main>

@@ -53,7 +53,7 @@ $(() => {
         $('#comment-form').find('.vsubmit').addClass('loading').html('<i class="icon icon-loading icon-pulse"></i> 提交中...').attr('disabled', 'disabled');
       },
       complete: () => {
-        $('#comment-form').find('.vsubmit').removeClass('loading').html('提交评论').removeAttr('disabled');
+        $('#comment-form').find('.vsubmit').removeClass('loading').html('发表').removeAttr('disabled');
       },
       success: (result) => {
         if (result.status === 1) {

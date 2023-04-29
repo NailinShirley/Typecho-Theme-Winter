@@ -65,7 +65,7 @@ class Utils
     if ($options->bgUrl) {
       echo $options->bgUrl;
     } else {
-      echo $qurl . '/assets/img/hero-background.jpg';
+      echo $qurl . '/assets/img/hero-bg.jpg';
     }
   }
 
@@ -130,11 +130,11 @@ class Utils
       }
       $http_type = 'http';
       if ($http_type == 'https') {
-        $url = 'https://secure.gravatar.com';
+        $url = 'https://gravatar.loli.net/avatar/';
       } else {
-        $url = 'http://www.gravatar.com';
+        $url = 'https://sdn.geekzu.org/avatar/';
       }
-      $url .= '/avatar/';
+      $url .= '';
     }
 
     if (!empty($cx)) {
@@ -185,7 +185,7 @@ class Utils
 
   public static function getGravatar($email, $s = 96, $d = 'mp', $r = 'g', $img = false, $atts = array())
   {
-    $url = '//cdn.v2ex.com/gravatar/';
+    $url = 'https://gravatar.loli.net/avatar/';
     $url .= md5(strtolower(trim($email)));
     $url .= "?s=$s&d=$d&r=$r";
     if ($img) {

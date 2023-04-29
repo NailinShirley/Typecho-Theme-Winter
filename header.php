@@ -39,15 +39,17 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
   <?php if (!Utils::isEnabled('enableComments', 'JConfig') && $this->is('post')): ?>
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
   <?php endif ?>
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/prism/prism.css'); ?>">
+<script src="<?php $this->options->themeUrl('assets/prism/prism.js'); ?>"></script>
 </head>
-<body class="spring-body">
+<body class="winter-body">
 <div class="d-flex site-wrapper">
   <div class="d-block d-lg-none d-xl-none sidebar-wrapper">
     <div class="sidebar-container">
       <div class="d-flex justify-content-between sidebar-header">
         <div class="sidebar-title"><?= $this->options->title; ?></div>
         <div class="d-flex sidebar-right">
-          <div class="d-flex align-items-center justify-content-center sidebar-search click-search">
+          <div class="d-flex align-items-center justify-content-center sidebar-search search-form-input">
             <i class="fas fa-search"></i>
           </div>
           <div class="d-flex align-items-center justify-content-center sidebar-close">
@@ -89,7 +91,7 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
       <nav class="navbar navbar-expand-lg header-navbar">
         <div class="container">
           <a class="navbar-brand" href="/">
-            <img src="https://cdn.nailinshirley.com/icon/icon.png" width="30" height="30"
+            <img src="https://cdn.nailinshirley.com/icon/icon-circle.png" width="30" height="30"
                  class="d-inline-block align-top navbar-brand-logo" alt="">
             <?= $this->options->title; ?>
           </a>
@@ -120,7 +122,7 @@ if (!empty($this->options->cdn) && $this->options->cdn) {
                       data-placement="bottom" title="切换风格">
                 🌓
               </button>
-              <button type="button" class="btn site-tooltip btn-nav-left btn-search click-search" data-toggle="tooltip"
+              <button type="button" class="btn site-tooltip btn-nav-left btn-search search-form-input" data-toggle="tooltip"
                       data-placement="bottom" title="搜索文章">
                 <i class="fas fa-search"></i>
               </button>

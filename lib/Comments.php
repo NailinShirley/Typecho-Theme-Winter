@@ -32,6 +32,7 @@ class Comments
       } elseif (preg_match('/Windows NT 6.2/i', $ua)) {$os = "Windows 8";
       } elseif (preg_match('/Windows NT 6.3/i', $ua)) {$os = "Windows 8.1";
       } elseif (preg_match('/Windows NT 10.0/i', $ua)) {$os = "Windows 10";
+      } elseif (preg_match('/Windows NT 11.0/i', $ua)) {$os = "Windows 11";
       } elseif (preg_match('/Windows NT 5.1/i', $ua)) {$os = "Windows XP";
       } elseif (preg_match('/Windows NT 5.2/i', $ua) && preg_match('/Win64/i', $ua)) {$os = "Windows XP 64 bit";
       } elseif (preg_match('/Android ([0-9.]+)/i', $ua, $matches)) {$os = "Android " . $matches[1];
